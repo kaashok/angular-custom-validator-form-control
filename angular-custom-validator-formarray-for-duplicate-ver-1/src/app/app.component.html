@@ -1,0 +1,22 @@
+<h4 class="bg-primary text-white p-2">
+  Check for duplicate names
+</h4>
+
+<div [formGroup]="formArray">
+  <div class="px-3 py-1" *ngFor="let group of formArray.controls" [formGroup]="group">
+    Name <input formControlName="name"/>
+    Content <input formControlName="content" class="w-20" disabled/>
+    <small class="d-block text-danger" 
+      *ngIf="group.get('name').errors?.duplicated">
+      This line is duplicated
+    </small>
+  </div>
+</div>
+
+<hr>
+<pre>
+<b>Value :</b> {{formArray.value | json}}
+<b>Valid :</b> {{formArray.valid}}
+<b>Errors :</b> {{formArray.errors | json}}
+<b>Duplicates :</b> {{duplicates}}
+</pre>
